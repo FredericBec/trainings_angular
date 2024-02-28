@@ -13,7 +13,14 @@ export class CartService {
   }
 
   addTraining(training : Training){
-    this.cart?.set(training.id, training);
+    if(this.cart.has(training.id)){
+      const existTraining = this.cart.get(training.id);
+      if(existTraining){
+        existTraining.quantity++;
+      };
+    }else{
+      this.cart?.set(training.id, training);
+    }
     let cart = JSON.stringify(Array.from(this.cart?.entries()))
     localStorage.setItem('cart', cart);
   }
@@ -23,7 +30,16 @@ export class CartService {
   }
 
   removeFromCart(training : Training){
-    this.cart?.delete(training.id);
+    if(this.cart.has(training.id)){
+      const existTraining = this.cart.get(training.id);
+      if(existTraining){
+        existTraining.quantity--;
+      }
+    }else{
+      this.cart?.delete(training.id);
+    }
+    let cart = JSON.stringify(Array.from(this.cart?.entries()))
+    localStorage.setItem('cart', cart);
   }
 
   totalCart(){
