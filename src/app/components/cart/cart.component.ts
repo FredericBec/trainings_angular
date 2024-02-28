@@ -9,12 +9,10 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  cart : Map<number, Training>;
+  cart: Map<number, Training> | undefined;
   total : number |undefined;
 
   constructor(private cartService : CartService) {
-
-    this.cart = new Map<number, Training>();
   }
 
   ngOnInit(): void {
@@ -25,6 +23,7 @@ export class CartComponent implements OnInit {
 
   removeTraining(training : Training){
     this.cartService.removeFromCart(training);
+    this.total = this.cartService.totalCart();
   }
 
 

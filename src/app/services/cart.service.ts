@@ -26,18 +26,22 @@ export class CartService {
   }
   
   getCart() {
+    console.log(this.cart);
     return this.cart;
   }
 
   removeFromCart(training : Training){
+    const existTraining = this.cart.get(training.id);
+    console.log(existTraining);
     if(this.cart.has(training.id)){
-      const existTraining = this.cart.get(training.id);
       if(existTraining){
         existTraining.quantity--;
+        if(existTraining.quantity <= 0){
+          this.cart.delete(training.id);
+        }
       }
-    }else{
-      this.cart?.delete(training.id);
     }
+    
     let cart = JSON.stringify(Array.from(this.cart?.entries()))
     localStorage.setItem('cart', cart);
   }
