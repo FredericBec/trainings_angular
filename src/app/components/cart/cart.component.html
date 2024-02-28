@@ -1,0 +1,26 @@
+<div>
+    <ng-container *ngIf="cart">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            <tr *ngFor="let training of cart">
+                <td>{{training.id}}</td>
+                <td>{{training.name}}</td>
+                <td>{{training.quantity}}</td>
+                <td>{{training.price}}</td>
+                <td><a class="btn btn-danger" (click)="removeTraining(training)">Supprimer</a></td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td></td>
+                <td></td>
+                <td>{{total}}</td>
+            </tr>
+        </table>
+    </ng-container>
+</div>
+
