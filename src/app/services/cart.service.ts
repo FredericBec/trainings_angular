@@ -6,22 +6,24 @@ import { Training } from '../model/training.model';
 })
 export class CartService {
 
-  cart : Array<Training> = [];
+  cart :  Map<number, Training>;
 
-  constructor() {}
+  constructor() {
+    this.cart = new Map<number, Training>();
+  }
 
   addTraining(training : Training){
-    this.cart.push(training);
+    this.cart?.set(training.id, training);
+    let cart = JSON.stringify(Array.from(this.cart?.entries()))
+    localStorage.setItem('cart', cart);
   }
   
   getCart() {
-    console.log(this.cart);
     return this.cart;
   }
 
   removeFromCart(training : Training){
-    let index = this.cart.indexOf(training)!;
-    this.cart.splice(index, 1);
+    this.cart?.delete(training.id);
   }
 
   totalCart(){
