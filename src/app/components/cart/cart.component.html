@@ -7,12 +7,12 @@
                 <th>Quantity</th>
                 <th>Price</th>
             </tr>
-            <tr *ngFor="let training of cart">
-                <td>{{training.id}}</td>
-                <td>{{training.name}}</td>
-                <td>{{training.quantity}}</td>
-                <td>{{training.price}}</td>
-                <td><a class="btn btn-danger" (click)="removeTraining(training)">Supprimer</a></td>
+            <tr *ngFor="let training of cart | keyvalue">
+                <td>{{training.value.id}}</td>
+                <td>{{training.value.name}}</td>
+                <td>{{training.value.quantity}}</td>
+                <td>{{training.value.price}}</td>
+                <td><a class="btn btn-danger" (click)="removeTraining(training.value)">Supprimer</a></td>
             </tr>
             <tr>
                 <td>Total</td>
