@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Training } from 'src/app/model/training.model';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -12,7 +13,7 @@ export class CartComponent implements OnInit {
   cart: Map<number, Training> | undefined;
   total : number |undefined;
 
-  constructor(private cartService : CartService) {
+  constructor(private cartService : CartService, private router : Router) {
   }
 
   ngOnInit(): void {
@@ -26,6 +27,8 @@ export class CartComponent implements OnInit {
     this.total = this.cartService.totalCart();
   }
 
-
+  navigateToForm(){
+    this.router.navigateByUrl('customer');
+  }
 
 }
