@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Training } from '../model/training.model';
+import { Customer } from '../model/customer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +8,13 @@ import { Training } from '../model/training.model';
 export class CartService {
 
   cart :  Map<number, Training>;
+  customer : Customer;
+  customers : Map<number, Customer>;
 
   constructor() {
     this.cart = new Map<number, Training>();
+    this.customer = new Customer(0, '', '', '', '', '');
+    this.customers = new Map<number, Customer>();
   }
 
   addTraining(training : Training){
@@ -32,7 +37,6 @@ export class CartService {
 
   removeFromCart(training : Training){
     const existTraining = this.cart.get(training.id);
-    console.log(existTraining);
     if(this.cart.has(training.id)){
       if(existTraining){
         existTraining.quantity--;
@@ -53,5 +57,20 @@ export class CartService {
     });
 
     return total;
+  }
+
+  addCustomer(customer : Customer){
+    this.customer = customer;
+    const existCustomer = this.customers.get(customer.id);
+    if(!existCustomer){
+      this.customers.set(customer.id, customer);
+    }
+    let customers = JSON.stringify(Array.from(this.customers.entries()));
+    localStorage.setItem('customers', customers);
+    console.log(customers);
+  }
+
+  getCustomer(){
+    return this.customer;
   }
 }
