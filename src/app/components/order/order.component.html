@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-header">
+            <h2 class="font-weight-bold">Récapitulatif de la commande :</h2>
+        </div>
+        <div class="card-body">
+            <div class=" d-flex flex-row mx-4 p-2">
+                <div class="d-flex flex-column p-2">
+                    <div class="d-flex flex-row">
+                        <span class="font-weight-bold">{{customer.name}}</span>
+                        <span class="font-weight-bold px-2">{{customer.firstName}}</span>
+                    </div>
+                    <span>{{customer.address}}</span>
+                    <span>{{customer.phone}}</span>
+                    <span>{{customer.email}}</span>
+                </div>
+                <div *ngFor="let training of cart | keyvalue" class="d-flex flex-column p-2">
+                    <h3 class="font-weight-bold">{{training.value.name}}</h3>
+                    <div class="d-flex flex-row">
+                        <label for="price" class="font-weight-bold">Prix : </label>
+                        <span class="px-2">{{training.value.price}} €</span>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end">
+                <label for="total" class="font-weight-bold">Total : </label>
+                <span class="mx-2">{{total}} €</span>
+            </div>
+        </div>
+    </div>
+</div>
