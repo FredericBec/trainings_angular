@@ -9,12 +9,12 @@ export class CartService {
 
   cart :  Map<number, Training>;
   customer : Customer;
-  customers : Map<number, Customer>;
+  customers : Map<string, Customer>;
 
   constructor() {
     this.cart = new Map<number, Training>();
-    this.customer = new Customer(0, '', '', '', '', '');
-    this.customers = new Map<number, Customer>();
+    this.customer = new Customer('','','','','');
+    this.customers = new Map<string, Customer>();
   }
 
   addTraining(training : Training){
@@ -60,10 +60,9 @@ export class CartService {
   }
 
   addCustomer(customer : Customer){
-    this.customer = customer;
-    const existCustomer = this.customers.get(customer.id);
+    const existCustomer = this.customers.get(customer.name);
     if(!existCustomer){
-      this.customers.set(customer.id, customer);
+      this.customers.set(customer.name, customer);
     }
     let customers = JSON.stringify(Array.from(this.customers.entries()));
     localStorage.setItem('customers', customers);
@@ -71,6 +70,14 @@ export class CartService {
   }
 
   getCustomer(){
-    return this.customer;
+    const customerData = localStorage.getItem('customers');
+    if(customerData){
+      const customerEntries = JSON.parse(customerData);
+      const customerMap = new Map<string, Customer>(customerEntries);
+      const lastEntry = Array.from(customerMap.values()).pop();
+      return lastEntry;
+    }else {
+      return this.customer;
+    }
   }
 }
