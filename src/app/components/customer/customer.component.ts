@@ -10,10 +10,13 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CustomerComponent implements OnInit {
 
+  //Struture de données
   customer : Customer = new Customer('', '', '', '', '');
 
+  //injection du service et du router
   constructor(public cartService : CartService, private router : Router) { }
 
+  //Récupération des dernières infos saisies du client
   ngOnInit(): void {
     const customerInfo = this.cartService.getCustomer();
     if(customerInfo){
@@ -21,8 +24,12 @@ export class CustomerComponent implements OnInit {
     }
   }
 
+  /**
+   * Ajout d'un nouveau client 
+   * et navigation vers la page du récapitulatif de la commande
+   * @param customer 
+   */
   onSaveCustomer(customer : Customer){
-    console.log(customer);
     this.cartService.addCustomer(customer);
     this.router.navigateByUrl('order');
   }

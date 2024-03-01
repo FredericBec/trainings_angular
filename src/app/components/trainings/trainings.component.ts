@@ -10,10 +10,15 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class TrainingsComponent implements OnInit {
 
+  //Struture de données
   listTrainings : Training[] | undefined;
 
+  //injection du service et du router
   constructor(private cartService : CartService, private router : Router) { }
 
+  /**
+   * Initialisation des données dans le composant à son initialisation
+   */
   ngOnInit(): void {
     this.listTrainings = [
       {id : 1, name : "Java", description : "Formation java SE8", duration : 5, price : 1500, quantity : 1},
@@ -22,12 +27,22 @@ export class TrainingsComponent implements OnInit {
     ];
   }
 
+  /**
+   * Fonction pour ajouter une formation au panier
+   * et naviguer vers le panier
+   * @param training la formation ajoutée
+   */
   onAddToCart(training : Training){
     this.cartService.addTraining(training);
     this.router.navigateByUrl('cart');
 
   }
 
+  /**
+   * Vérification de la quantité pour éviter des mauvaises saisies de quantité
+   * @param quantity quantité saisie
+   * @returns true si la quantité est comprise entre 1 et 10
+   */
   checkQuantity(quantity : number): boolean{
     return quantity >= 1 && quantity <= 10;
   }

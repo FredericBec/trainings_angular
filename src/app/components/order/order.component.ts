@@ -10,18 +10,26 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class OrderComponent implements OnInit {
 
+  //Structure de données
   cart : Map<number, Training>;
   total : number | undefined;
   customer : Customer;
+
+  //initialisation des structure de données et injection du service
   constructor(private cartService : CartService) { 
     this.cart = new Map<number, Training>();
     this.customer = new Customer('','','','','');
   }
 
+  //Initialisation de la méthode takeOrder
   ngOnInit(): void {
     this.takeOrder();
   }
   
+  /**
+   * Permet de récupérer les infos du panier et du client depuis le service
+   * et de les injecter dans le template du composant
+   */
   takeOrder(){
     const existData = this.cartService.getCartData();
     if(existData){
