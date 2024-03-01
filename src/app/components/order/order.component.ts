@@ -19,13 +19,20 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.cart =  this.cartService.getCart();
-   this.total = this.cartService.totalCart();
-   const customerInfo = this.cartService.getCustomer();
+    this.takeOrder();
+  }
+  
+  takeOrder(){
+    const existData = this.cartService.getCartData();
+    if(existData){
+      this.cart = existData;
+    }
+    this.total = this.cartService.totalCart();
+    const customerInfo = this.cartService.getCustomer();
     if(customerInfo){
       this.customer = customerInfo;
     }
-  }
+    this.cartService.clearCart();
 
-  
+  }
 }
