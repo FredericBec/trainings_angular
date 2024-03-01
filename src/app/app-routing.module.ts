@@ -4,13 +4,16 @@ import { TrainingsComponent } from './components/trainings/trainings.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { OrderComponent } from './components/order/order.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path : 'trainings', component : TrainingsComponent},
+  {path : 'trainings', component : TrainingsComponent},
   {path : 'cart', component : CartComponent},
   {path : 'customer', component : CustomerComponent},
   {path : 'order', component : OrderComponent},
-  {path : '', redirectTo : 'trainings', pathMatch : 'full'}
+  {path : '', redirectTo : 'trainings', pathMatch : 'full'},
+  {path : '404', component : PageNotFoundComponent},
+  {path : '**', redirectTo : '404'}
 ];
 
 @NgModule({

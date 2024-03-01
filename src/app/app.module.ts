@@ -8,6 +8,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { CartService } from './services/cart.service';
 import { CustomerComponent } from './components/customer/customer.component';
 import { OrderComponent } from './components/order/order.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { OrderComponent } from './components/order/order.component';
     TrainingsComponent,
     CartComponent,
     CustomerComponent,
-    OrderComponent
+    OrderComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
