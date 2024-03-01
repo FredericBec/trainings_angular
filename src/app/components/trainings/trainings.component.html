@@ -14,7 +14,7 @@
                 <td>{{training.description}}</td>
                 <td>{{training.duration}}</td>
                 <td>{{training.price}} €</td>
-                <td><input type="number" name="quantity" style="width: 60px;" [(ngModel)]="training.quantity"></td>
+                <td><input type="number" name="quantity" style="width: 60px;" min="1" max="10" [(ngModel)]="training.quantity"></td>
                 <td><a class="btn btn-primary" (click)="onAddToCart(training)">Ajouter</a></td>
             </tr>
         </table>
