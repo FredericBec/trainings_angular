@@ -59,6 +59,10 @@ export class CartService {
     return total;
   }
 
+  clearCart(){
+    this.cart.clear();
+  }
+
   addCustomer(customer : Customer){
     const existCustomer = this.customers.get(customer.name);
     if(!existCustomer){
