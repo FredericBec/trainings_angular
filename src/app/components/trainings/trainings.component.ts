@@ -25,6 +25,11 @@ export class TrainingsComponent implements OnInit {
   onAddToCart(training : Training){
     this.cartService.addTraining(training);
     this.router.navigateByUrl('cart');
+
+  }
+
+  checkQuantity(quantity : number): boolean{
+    return quantity >= 1 && quantity <= 10;
   }
 
 }

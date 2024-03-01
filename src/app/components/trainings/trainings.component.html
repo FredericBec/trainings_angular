@@ -18,8 +18,8 @@
                     <td>{{training.description}}</td>
                     <td>{{training.duration}}</td>
                     <td>{{training.price}} €</td>
-                    <td><input type="number" name="quantity" style="width: 60px;" min="1" max="10" [(ngModel)]="training.quantity"></td>
-                    <td><a class="btn btn-primary" (click)="onAddToCart(training)">Ajouter</a></td>
+                    <td><input type="number" name="quantity" style="width: 60px;" min="1" max="10" [(ngModel)]="training.quantity" (keydown)="checkQuantity(training.quantity)"></td>
+                    <td><button class="btn btn-primary" (click)="onAddToCart(training)" [disabled]="!checkQuantity(training.quantity)">Ajouter</button></td>
                 </tr>
             </tbody>
         </table>
