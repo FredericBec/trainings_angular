@@ -21,7 +21,7 @@ export class CartService {
     if(this.cart.has(training.id)){
       const existTraining = this.cart.get(training.id);
       if(existTraining && (existTraining.quantity >= 1 || existTraining.quantity < 10)){
-        existTraining.quantity++;
+        existTraining.quantity += training.quantity;
       };
     }else{
       this.cart?.set(training.id, training);
