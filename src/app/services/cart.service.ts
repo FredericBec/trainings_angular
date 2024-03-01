@@ -20,7 +20,7 @@ export class CartService {
   addTraining(training : Training){
     if(this.cart.has(training.id)){
       const existTraining = this.cart.get(training.id);
-      if(existTraining){
+      if(existTraining && (existTraining.quantity >= 1 || existTraining.quantity < 10)){
         existTraining.quantity++;
       };
     }else{
@@ -61,6 +61,17 @@ export class CartService {
 
   clearCart(){
     this.cart.clear();
+  }
+
+  getCartData(){
+    const cartData = localStorage.getItem('cart');
+    if(cartData){
+      const cartEntries = JSON.parse(cartData);
+      const cartMap = new Map<number, Training>(cartEntries);
+      return cartMap;
+    }else {
+      return null;
+    }
   }
 
   addCustomer(customer : Customer){
